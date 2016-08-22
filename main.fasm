@@ -1,4 +1,4 @@
-theOS                                   equ                                     'linux64'
+theOS                                   equ                                     'yaos'
 
 ;( import macros )
 macro useCode                           name
@@ -23,27 +23,27 @@ macro useStat                           name
 }
 macro useXCode                          name
 {
-  include                               'libs/code/' # name # '.fasm'
+  include                               'libs/libs/code/' # name # '.fasm'
 }
 macro useXData                          name
 {
-  include                               'libs/data/' # name # '.fdat'
+  include                               'libs/libs/data/' # name # '.fdat'
 }
 macro useXResv                          name
 {
-  include                               'libs/resv/' # name # '.fres'
+  include                               'libs/libs/resv/' # name # '.fres'
 }
 macro useXText                          name
 {
-  include                               'libs/text/' # name # '.ftxt'
+  include                               'libs/libs/text/' # name # '.ftxt'
 }
 macro useXStat                          name
 {
-  include                               'libs/stat/' # name # '.finc'
+  include                               'libs/libs/stat/' # name # '.finc'
 }
 macro useYalib                          name
 {
-  include                               'libs/' # name # '.finc'
+  include                               'libs/' # name # '.flib'
 }
 code                                    fix                                     useCode
 vars                                    fix                                     useData
@@ -55,4 +55,4 @@ xvars                                   fix                                     
 xtext                                   fix                                     useXText
 xresv                                   fix                                     useXResv
 xstat                                   fix                                     useXStat
-yalib                                   fix                                     useXLib
+yalib                                   fix                                     useYalib

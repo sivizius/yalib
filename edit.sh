@@ -10,7 +10,7 @@
 #v=0.9.1.0-»Amanita muscaria«
 
 if [[ -d "src/yalib" ]]; then cd "src/yalib"; fi
-line="sba.sh fasm.fasm "
+line="sba.sh yalib.fasm "
 if [ "$(ls -A 'code')" ]; then line="$line code/*"; fi
 if [ "$(ls -A 'data')" ]; then line="$line data/*"; fi
 #if [ "$(ls -A 'misc')" ]; then line="$line misc/*"; fi
