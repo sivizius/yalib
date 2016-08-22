@@ -1,0 +1,4 @@
+symbol  yapic.init                      ->                                      'init'
+symbol  yapic.fail                      ->                                      'fail'
+symbol  yapic.open                      ->                                      'open'
+symbol  yapic.read                      ->                                      'read'

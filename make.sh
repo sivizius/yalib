@@ -9,4 +9,4 @@
 #t=make-script for yalib
 #v=0.9.1.0-»Amanita muscaria«
 
-"../build/bin/fasm" "yalib.fasm" "../build/bin/yalib.elf" 2>&1 | tee "../build/out/yalib.log"
+echo "this library is supposed to be included as source."

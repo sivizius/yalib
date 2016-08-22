@@ -1,0 +1,64 @@
+;( macros )
+  macro cookies_init                    power,                                  absorb,                                 squeeze,                                config
+  {
+    if      ( power eq )
+      mov                               rax,                                    8
+    else if ( power eq rax )
+    else
+      mov                               rax,                                    power
+    end if
+    if      ( absorb eq )
+    else if ( absorb eq lib2arg )
+    else
+      mov                               lib2arg,                                absorb
+    end if
+    if      ( squeeze eq )
+    else if ( squeeze eq lib1arg )
+    else
+      mov                               lib1arg,                                squeeze
+    end if
+    if      ( config eq )
+    else if ( config eq lib0arg )
+    else
+      mov                               lib0arg,                                config
+    end if
+    call                                qword [ cookies.init ]
+  }
+  macro cookies_debug
+  {
+    call                                qword [ cookies.debug ]
+  }
+  macro cookies_new
+  {
+    call                                qword [ cookies.new ]
+  }
+  macro cookies_put
+  {
+    call                                qword [ cookies.put ]
+  }
+  macro cookies_fin
+  {
+    call                                qword [ cookies.fin ]
+  }
+  macro cookies_get
+  {
+    call                                qword [ cookies.get ]
+  }
+  macro cookies_hash                    string
+  {
+    match =[addr=],string
+    \{
+      mov                               lib0arg,                                qword [ addr ]
+      sub                               lib0arg,                                2
+    \}
+    match , string
+    \{
+      display                           '[asm:cookies] need a string!', 10
+      err
+    \}
+    call                                qword [ cookies.hash ]
+  }
+  macro cookies_insert
+  {
+    call                                qword [ cookies.insert ]
+  }

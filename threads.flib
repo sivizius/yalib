@@ -1,0 +1,18 @@
+;( macros )
+  macro threads_call                    func
+  {
+    local                               done
+    done                                equ                                     false
+    match =[addr=],func
+    \{
+      mov                               rbx,                                    qword [ addr ]
+      null                              sys1arg
+      done                              equ                                     true
+    \}
+    match =false,done
+    \{
+      lea                               rbx,                                    [ func ]
+      null                              sys1arg
+    \}
+    call                                qword [ threads.call ]
+  }

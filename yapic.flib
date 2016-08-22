@@ -1,0 +1,922 @@
+yapic.sFinal                            =                                       0x00000000                                                              ;:\0
+yapic.sNull                             =                                       0x00000000                                                              ;:\0
+yapic.sNUL                              =                                       0x00000000                                                              ;:\0
+yapic.sBell                             =                                       0x00000007                                                              ;:\a
+yapic.sBEL                              =                                       0x00000007                                                              ;:\a
+yapic.sBackspace                        =                                       0x00000008                                                              ;:\b
+yapic.sTabulator                        =                                       0x00000009                                                              ;:\t
+yapic.sTAB                              =                                       0x00000009                                                              ;:\t
+yapic.sNewline                          =                                       0x0000000a                                                              ;:\n
+yapic.sLineFeed                         =                                       0x0000000a                                                              ;:\n
+yapic.sLF                               =                                       0x0000000a                                                              ;:\n
+yapic.sVerticalTab                      =                                       0x0000000b                                                              ;:\v
+yapic.sVT                               =                                       0x0000000b                                                              ;:\v
+yapic.sFormFeed                         =                                       0x0000000c                                                              ;:\f
+yapic.sFF                               =                                       0x0000000c                                                              ;:\f
+yapic.sCarriageReturn                   =                                       0x0000000d                                                              ;:\r
+yapic.sCR                               =                                       0x0000000d                                                              ;:\r
+yapic.sWhitespace                       =                                       0x00000020
+yapic.sQuotation                        =                                       0x00000022                                                              ;:\"
+yapic.sApostrophe                       =                                       0x00000027                                                              ;:\'
+yapic.sBackslash                        =                                       0x0000005c                                                              ;:\\
+yapic.sDEL                              =                                       0x0000007f
+yapic.sEscape                           =                                       0x0000001b                                                              ;:\e
+yapic.fCaseMask                         =                                       0x00000020
+yapic.fSpecial                          =                                       0x80000000
+yapic.fCharMask                         =                                       0x001fffff
+yapic.sUpper                            =                                       'A' + yapic.fSpecial  ;[A-Z]                                  [:upper:]
+yapic.sLower                            =                                       'B' + yapic.fSpecial  ;[a-z]                                  [:lower:]
+yapic.sAlpha                            =                                       'C' + yapic.fSpecial  ;[A-Za-z]       - A-Z->a-z              [:alpha:]
+yapic.sAlphaSave                        =                                       'D' + yapic.fSpecial  ;[A-Za-z]                               [:alpha:]
+yapic.sAlphaNumeric                     =                                       'E' + yapic.fSpecial  ;[0-9A-Za-z]    - A-Z->a-z              [:alnum:]
+yapic.sAlphaNumericSave                 =                                       'F' + yapic.fSpecial  ;[0-9A-Za-z]                            [:alnum:]
+yapic.sOctal                            =                                       'G' + yapic.fSpecial  ;[0-7]                                  [:octal:]
+yapic.sDecimal                          =                                       'H' + yapic.fSpecial  ;[0-9]                                  [:digit:]   \d
+yapic.sNoDecimal                        =                                       'I' + yapic.fSpecial  ;[^0-9]                                 [:nodigit:] \D
+yapic.sHexadecimal                      =                                       'J' + yapic.fSpecial  ;[0-9A-Fa-f]    - A-F->a-f              [:xdigit:]
+yapic.sHexadecimalSave                  =                                       'K' + yapic.fSpecial  ;[0-9A-Fa-f]                            [:xdigit:]
+yapic.sPunctuation                      =                                       'L' + yapic.fSpecial  ;[!"#$%&'()*+,-./;:<=>?@[\\\]^_`{|}~]   [:punct:]
+yapic.sBlank                            =                                       'M' + yapic.fSpecial  ;[\t ]                                  [:blank:]
+yapic.sSpace                            =                                       'N' + yapic.fSpecial  ;[\t\n\v\f\r ]                          [:space:]   \s
+yapic.sNoSpace                          =                                       'O' + yapic.fSpecial  ;[^\t\n\v\f\r ]                         [:nospace:] \S
+yapic.sControl                          =                                       'P' + yapic.fSpecial  ;{0x00,....,0x1f,0x7f}                  [:cntrl:]
+yapic.sGraphical                        =                                       'Q' + yapic.fSpecial  ;[]                                     [:graph:]
+yapic.sPrintable                        =                                       'R' + yapic.fSpecial  ;[]                                     [:print:]
+yapic.sWord                             =                                       'S' + yapic.fSpecial  ;[0-9A-Za-z_]   - A-Z->a-z              [:word:]    \w
+yapic.sWordSave                         =                                       'T' + yapic.fSpecial  ;[0-9A-Za-z_]                           [:word:]    \w
+yapic.sNoWord                           =                                       'U' + yapic.fSpecial  ;[^0-9A-Za-z_]  - A-Z->a-z              [:noword:]  \W
+yapic.sNoWordSave                       =                                       'V' + yapic.fSpecial  ;[^0-9A-Za-z_]                          [:noword:]  \W
+yapic.sString                           =                                       'W' + yapic.fSpecial  ;["']                                   [:quote:]
+yapic.sMathematical                     =                                       'X' + yapic.fSpecial  ;[+-*/^%<=>|&!~]                        [:math:]
+yapic.sBrackets                         =                                       'Y' + yapic.fSpecial  ;[<{[()]}>]                             [:bracket:]
+yapic.sAny                              =                                       'Z' + yapic.fSpecial  ;[.]                                    [:any:]     .
+yapic.sNoCaseA                          =                                       'a' + yapic.fSpecial  ;[Aa]
+yapic.sNoCaseB                          =                                       'b' + yapic.fSpecial  ;[Bb]
+yapic.sNoCaseC                          =                                       'c' + yapic.fSpecial  ;[Cc]
+yapic.sNoCaseD                          =                                       'd' + yapic.fSpecial  ;[Dd]
+yapic.sNoCaseE                          =                                       'e' + yapic.fSpecial  ;[Ee]
+yapic.sNoCaseF                          =                                       'f' + yapic.fSpecial  ;[Ff]
+yapic.sNoCaseG                          =                                       'g' + yapic.fSpecial  ;[Gg]
+yapic.sNoCaseH                          =                                       'h' + yapic.fSpecial  ;[Hh]
+yapic.sNoCaseI                          =                                       'i' + yapic.fSpecial  ;[Ii]
+yapic.sNoCaseJ                          =                                       'j' + yapic.fSpecial  ;[Jj]
+yapic.sNoCaseK                          =                                       'k' + yapic.fSpecial  ;[Kk]
+yapic.sNoCaseL                          =                                       'l' + yapic.fSpecial  ;[Ll]
+yapic.sNoCaseM                          =                                       'm' + yapic.fSpecial  ;[Mm]
+yapic.sNoCaseN                          =                                       'n' + yapic.fSpecial  ;[Nn]
+yapic.sNoCaseO                          =                                       'o' + yapic.fSpecial  ;[Oo]
+yapic.sNoCaseP                          =                                       'p' + yapic.fSpecial  ;[Pp]
+yapic.sNoCaseQ                          =                                       'q' + yapic.fSpecial  ;[Qq]
+yapic.sNoCaseR                          =                                       'r' + yapic.fSpecial  ;[Rr]
+yapic.sNoCaseS                          =                                       's' + yapic.fSpecial  ;[Ss]
+yapic.sNoCaseT                          =                                       't' + yapic.fSpecial  ;[Tt]
+yapic.sNoCaseU                          =                                       'u' + yapic.fSpecial  ;[Uu]
+yapic.sNoCaseV                          =                                       'v' + yapic.fSpecial  ;[Vv]
+yapic.sNoCaseW                          =                                       'w' + yapic.fSpecial  ;[Ww]
+yapic.sNoCaseX                          =                                       'x' + yapic.fSpecial  ;[Xx]
+yapic.sNoCaseY                          =                                       'y' + yapic.fSpecial  ;[Yy]
+yapic.sNoCaseZ                          =                                       'z' + yapic.fSpecial  ;[Zz]
+yapic.eNone                             =                                       0x00
+yapic.eUnexspectedChar                  =                                       0x01
+yapic.eUnexspectedNull                  =                                       0x02
+yapic.eNotImplemented                   =                                       0x03
+yapic.src.txt.ascii                     =                                       0x0000
+yapic.src.txt.utf8                      =                                       0x0001
+yapic.src.png                           =                                       0x0002
+yapic.src.maximum                       =                                       0x0001
+
+;orTest:      char  ?  jmp true : jmp false
+;orCase:      char  ?  jmp true : step
+;orFail:      char  ?  step     : jmp false
+;ifTest: get, char  -> orTest
+;ifCase: get, char  -> orCase
+;ifFail: get, char  -> orFail
+;inTest:      char  -> orTest
+;inCase:      char  -> orCase
+;inFail:      char  -> orFail
+;string: [chars]    -> ifFail
+
+macro yapic_open                        source,                                 input
+{
+  if ( input eq )
+  else if ( input eq 0 )
+    null                                lib0arg
+  else
+    mov                                 lib0arg,                                input
+  end if
+  if ( source eq )
+  else if ( source eq 0 )
+    null                                lib1arg
+  else
+    mov                                 lib1arg,                                source
+  end if
+  call                                  qword [ yapic.open ]
+}
+macro yapic_newChar
+{
+  call                                  qword [ yapic.read ]
+}
+macro yapic_final                       error
+{
+  match any, error
+  \{
+    mov                       rax,                          error
+  \}
+  match , error
+  \{
+    null                      rax
+  \}
+;  call                        [ parser9
+}
+
+macro yapic_ifTest            chr,                          true,               false
+{
+  yapic_newChar
+  yapic_orTest                chr,                          true,               false
+}
+macro yapic_ifCase            chr,                          jump
+{
+  yapic_newChar
+  yapic_orCase                chr,                          jump
+}
+macro yapic_ifFail            chr,                          jump
+{
+  yapic_newChar
+  yapic_orFail                chr,                          jump
+}
+macro yapic_string            jump,                         [ chars ]
+{
+  forward
+    yapic_ifFail              chars,                        jump
+}
+macro yapic_orTest            chr,                          true,               false
+{
+  ;if chr in class
+  ;  jmp true
+  ;else
+  ;  jmp false
+  ;end if
+  ;usefull as a branch
+  if  ( chr and yapic.fSpecial )
+    if      ( chr = yapic.sUpper )
+      cmp                     al,                           'A'
+      jb                      false
+      cmp                     al,                           'Z'
+      jbe                     true
+      jmp                     false
+    else if ( chr = yapic.sLower )
+      cmp                     al,                           'a'
+      jb                      false
+      cmp                     al,                           'z'
+      jbe                     true
+      jmp                     false
+    else if ( chr = yapic.sAlpha )
+      or                      al,                           yapic.fCaseMask
+      cmp                     al,                           'a'
+      jb                      false
+      cmp                     al,                           'z'
+      jbe                     true
+      jmp                     false
+    else if ( chr = yapic.sAlphaSave )
+      cmp                     al,                           'A'
+      jb                      false
+      cmp                     al,                           'Z'
+      jbe                     true
+      cmp                     al,                           'a'
+      jb                      false
+      cmp                     al,                           'z'
+      jbe                     true
+      jmp                     false
+    else if ( chr = yapic.sAlphaNumeric )
+      cmp                     al,                           '0'
+      jb                      false
+      cmp                     al,                           '9'
+      jbe                     true
+      or                      al,                           yapic.fCaseMask
+      cmp                     al,                           'a'
+      jb                      false
+      cmp                     al,                           'z'
+      jbe                     true
+      jmp                     false
+    else if ( chr = yapic.sAlphaNumericSave )
+      cmp                     al,                           '0'
+      jb                      false
+      cmp                     al,                           '9'
+      jbe                     true
+      cmp                     al,                           'A'
+      jb                      false
+      cmp                     al,                           'Z'
+      jbe                     true
+      cmp                     al,                           'a'
+      jb                      false
+      cmp                     al,                           'z'
+      jbe                     true
+      jmp                     false
+    else if ( chr = yapic.sOctal )
+      cmp                     al,                           '0'
+      jb                      false
+      cmp                     al,                           '7'
+      jbe                     true
+      jmp                     false
+    else if ( chr = yapic.sDecimal )
+      cmp                     al,                           '0'
+      jb                      false
+      cmp                     al,                           '9'
+      jbe                     true
+      jmp                     false
+    else if ( chr = yapic.sNoDecimal )
+      cmp                     al,                           '0'
+      jb                      true
+      cmp                     al,                           '9'
+      jbe                     false
+      jmp                     true
+    else if ( chr = yapic.sHexadecimal )
+      cmp                     al,                           '0'
+      jb                      false
+      cmp                     al,                           '9'
+      jbe                     true
+      or                      al,                           yapic.fCaseMask
+      cmp                     al,                           'a'
+      jb                      false
+      cmp                     al,                           'f'
+      jbe                     true
+      jmp                     false
+    else if ( chr = yapic.sHexadecimalSave )
+      cmp                     al,                           '0'
+      jb                      false
+      cmp                     al,                           '9'
+      jbe                     true
+      cmp                     al,                           'A'
+      jb                      false
+      cmp                     al,                           'F'
+      jbe                     true
+      cmp                     al,                           'a'
+      jb                      false
+      cmp                     al,                           'f'
+      jbe                     true
+      jmp                     false
+    else if ( chr = yapic.sPunctuation )
+      cmp                     al,                           0x21
+      jb                      false
+      cmp                     al,                           0x2f
+      jbe                     true
+      cmp                     al,                           0x3a
+      jb                      false
+      cmp                     al,                           0x40
+      jbe                     true
+      cmp                     al,                           0x5b
+      jb                      false
+      cmp                     al,                           0x60
+      jbe                     true
+      cmp                     al,                           0x7b
+      jb                      false
+      cmp                     al,                           0x7e
+      jbe                     true
+      jmp                     false
+    else if ( chr = yapic.sBlank )
+      display 'blank', 10
+      cmp                     al,                           yapic.sWhitespace
+      je                      true
+      cmp                     al,                           yapic.sTabulator
+      je                      true
+      jmp                     false
+    else if ( chr = yapic.sSpace )
+      cmp                     al,                           0x09
+      jb                      false
+      cmp                     al,                           0x0d
+      jbe                     true
+      cmp                     al,                           yapic.sWhitespace
+      je                      true
+      jmp                     false
+    else if ( chr = yapic.sNoSpace )
+      cmp                     al,                           0x09
+      jb                      true
+      cmp                     al,                           0x0d
+      jbe                     false
+      cmp                     al,                           yapic.sWhitespace
+      je                      false
+      jmp                     true
+    else if ( chr = yapic.sControl )
+      cmp                     al,                           0x1f
+      jbe                     true
+      cmp                     al,                           0x7f
+      je                      true
+      jmp                     false
+    else if ( chr = yapic.sGraphical )
+      cmp                     al,                           0x21
+      jb                      false
+      cmp                     al,                           0x7e
+      jbe                     true
+      jmp                     false
+    else if ( chr = yapic.sPrintable )
+      cmp                     al,                           0x09
+      jb                      false
+      cmp                     al,                           0x0d
+      jbe                     true
+      cmp                     al,                           0x20
+      jb                      false
+      cmp                     al,                           0x7e
+      jbe                     true
+      jmp                     false
+    else if ( chr = yapic.sWord )
+      cmp                     al,                           '0'
+      jb                      false
+      cmp                     al,                           '9'
+      jbe                     true
+      cmp                     al,                           '_'
+      je                      true
+      or                      al,                           yapic.fCaseMask
+      cmp                     al,                           'a'
+      jb                      false
+      cmp                     al,                           'z'
+      jbe                     true
+      jmp                     false
+    else if ( chr = yapic.sWordSave )
+      cmp                     al,                           '0'
+      jb                      false
+      cmp                     al,                           '9'
+      jbe                     true
+      cmp                     al,                           '_'
+      je                      true
+      cmp                     al,                           'A'
+      jb                      false
+      cmp                     al,                           'Z'
+      jbe                     true
+      cmp                     al,                           'a'
+      jb                      false
+      cmp                     al,                           'z'
+      jbe                     true
+      jmp                     false
+    else if ( chr = yapic.sNoWord )
+      cmp                     al,                           '0'
+      jb                      true
+      cmp                     al,                           '9'
+      jbe                     false
+      cmp                     al,                           '_'
+      je                      false
+      or                      al,                           yapic.fCaseMask
+      cmp                     al,                           'a'
+      jb                      true
+      cmp                     al,                           'z'
+      jbe                     false
+      jmp                     true
+    else if ( chr = yapic.sNoWordSave )
+      cmp                     al,                           '0'
+      jb                      true
+      cmp                     al,                           '9'
+      jbe                     false
+      cmp                     al,                           '_'
+      je                      false
+      cmp                     al,                           'A'
+      jb                      true
+      cmp                     al,                           'Z'
+      jbe                     false
+      cmp                     al,                           'a'
+      jb                      true
+      cmp                     al,                           'z'
+      jbe                     false
+      jmp                     true
+    else if ( chr = yapic.sString )
+      cmp                     al,                           0x22
+      je                      true
+      cmp                     al,                           0x27
+      je                      true
+      jmp                     false
+    else if ( chr = yapic.sMathematical )
+      cmp                     al,                           '!'
+      je                      true
+      cmp                     al,                           '%'
+      je                      true
+      cmp                     al,                           '&'
+      je                      true
+      cmp                     al,                           '*'
+      je                      true
+      cmp                     al,                           '+'
+      je                      true
+      cmp                     al,                           '-'
+      je                      true
+      cmp                     al,                           '/'
+      je                      true
+      cmp                     al,                           '<'
+      je                      true
+      cmp                     al,                           '='
+      je                      true
+      cmp                     al,                           '>'
+      je                      true
+      cmp                     al,                           '^'
+      je                      true
+      cmp                     al,                           '|'
+      je                      true
+      cmp                     al,                           '~'
+      je                      true
+      jmp                     false
+    else if ( chr = yapic.sBrackets )
+      cmp                     al,                           '<'
+      je                      true
+      cmp                     al,                           '{'
+      je                      true
+      cmp                     al,                           '['
+      je                      true
+      cmp                     al,                           '('
+      je                      true
+      cmp                     al,                           ')'
+      je                      true
+      cmp                     al,                           ']'
+      je                      true
+      cmp                     al,                           '}'
+      je                      true
+      cmp                     al,                           '>'
+      je                      true
+      jmp                     false
+    else if ( chr = yapic.sAny )
+      jmp                     true
+    else if ((( chr and yapic.fCharMask ) >= yapic.fNoCaseA ) & (( chr and yapic.fCharMask ) <= yapic.fNoCaseZ ))
+      or                      al,                           maschine_fCaseMask
+      cmp                     al,                           ( chr and yapic.fCharMask )
+      je                      true
+      jmp                     false
+    else
+      err "Error: Unknown special char!"
+    end if
+  else
+    cmp                       al,                           ( chr )
+    je                        true
+    jmp                       false
+  end if
+}
+macro yapic_orCase          chr,                          jump
+{
+  ;if chr in class
+  ;  jmp jump
+  ;end if
+  ;usefull as a choice
+  local final
+  if  ( chr and yapic.fSpecial )
+    if      ( chr = yapic.sUpper )
+      cmp                     al,                           'A'
+      jb                      final
+      cmp                     al,                           'Z'
+      jbe                     jump
+    else if ( chr = yapic.sLower )
+      cmp                     al,                           'a'
+      jb                      final
+      cmp                     al,                           'z'
+      jbe                     jump
+    else if ( chr = yapic.sAlpha )
+      or                      al,                           yapic.fCaseMask
+      cmp                     al,                           'a'
+      jb                      final
+      cmp                     al,                           'z'
+      jbe                     jump
+    else if ( chr = yapic.sAlphaNumeric )
+      cmp                     al,                           '0'
+      jb                      final
+      cmp                     al,                           '9'
+      jbe                     jump
+      or                      al,                           yapic.fCaseMask
+      cmp                     al,                           'a'
+      jb                      final
+      cmp                     al,                           'z'
+      jbe                     jump
+    else if ( chr = yapic.sOctal )
+      cmp                     al,                           '0'
+      jb                      final
+      cmp                     al,                           '7'
+      jbe                     jump
+    else if ( chr = yapic.sDecimal )
+      cmp                     al,                           '0'
+      jb                      final
+      cmp                     al,                           '9'
+      jbe                     jump
+    else if ( chr = yapic.sNoDecimal )
+      cmp                     al,                           '0'
+      jb                      jump
+      cmp                     al,                           '9'
+      ja                      jump
+    else if ( chr = yapic.sHexadecimal )
+      cmp                     al,                           '0'
+      jb                      final
+      cmp                     al,                           '9'
+      jbe                     jump
+      or                      al,                           yapic.fCaseMask
+      cmp                     al,                           'a'
+      jb                      final
+      cmp                     al,                           'f'
+      jbe                     jump
+    else if ( chr = yapic.sPunctuation )
+      cmp                     al,                           0x21
+      jb                      final
+      cmp                     al,                           0x2f
+      jbe                     jump
+      cmp                     al,                           0x3a
+      jb                      final
+      cmp                     al,                           0x40
+      jbe                     jump
+      cmp                     al,                           0x5b
+      jb                      final
+      cmp                     al,                           0x60
+      jbe                     jump
+      cmp                     al,                           0x7b
+      jb                      final
+      cmp                     al,                           0x7e
+      jbe                     jump
+    else if ( chr = yapic.sBlank )
+      cmp                     al,                           yapic.sWhitespace
+      je                      jump
+      cmp                     al,                           yapic.sTabulator
+      je                      jump
+    else if ( chr = yapic.sSpace )
+      cmp                     al,                           0x09
+      jb                      final
+      cmp                     al,                           0x0d
+      jbe                     jump
+      cmp                     al,                           yapic.sWhitespace
+      je                      jump
+    else if ( chr = yapic.sNoSpace )
+      cmp                     al,                           0x09
+      jb                      jump
+      cmp                     al,                           0x0d
+      jbe                     final
+      cmp                     al,                           yapic.sWhitespace
+      jne                     jump
+    else if ( chr = yapic.sControl )
+      cmp                     al,                           0x1f
+      jbe                     jump
+      cmp                     al,                           0x7f
+      je                      jump
+    else if ( chr = yapic.sGraphical )
+      cmp                     al,                           0x21
+      jb                      final
+      cmp                     al,                           0x7e
+      jbe                     jump
+    else if ( chr = yapic.sPrintable )
+      cmp                     al,                           0x09
+      jb                      final
+      cmp                     al,                           0x0d
+      jbe                     jump
+      cmp                     al,                           0x20
+      jb                      final
+      cmp                     al,                           0x7e
+      jbe                     jump
+    else if ( chr = yapic.sWord )
+      cmp                     al,                           '0'
+      jb                      final
+      cmp                     al,                           '9'
+      jbe                     jump
+      cmp                     al,                           '_'
+      je                      jump
+      or                      al,                           yapic.fCaseMask
+      cmp                     al,                           'a'
+      jb                      final
+      cmp                     al,                           'z'
+      jbe                     jump
+    else if ( chr = yapic.sNoWord )
+      cmp                     al,                           '0'
+      jb                      jump
+      cmp                     al,                           '9'
+      jbe                     final
+      cmp                     al,                           '_'
+      je                      final
+      or                      al,                           yapic.fCaseMask
+      cmp                     al,                           'a'
+      jb                      jump
+      cmp                     al,                           'z'
+      ja                      jump
+    else if ( chr = yapic.sString )
+      cmp                     al,                           0x22
+      je                      jump
+      cmp                     al,                           0x27
+      je                      jump
+    else if ( chr = yapic.sMathematical )
+      cmp                     al,                           '!'
+      je                      jump
+      cmp                     al,                           '%'
+      je                      jump
+      cmp                     al,                           'and'
+      je                      jump
+      cmp                     al,                           '*'
+      je                      jump
+      cmp                     al,                           '+'
+      je                      jump
+      cmp                     al,                           '-'
+      je                      jump
+      cmp                     al,                           '/'
+      je                      jump
+      cmp                     al,                           '<'
+      je                      jump
+      cmp                     al,                           '='
+      je                      jump
+      cmp                     al,                           '>'
+      je                      jump
+      cmp                     al,                           '^'
+      je                      jump
+      cmp                     al,                           '|'
+      je                      jump
+      cmp                     al,                           '~'
+      je                      jump
+    else if ( chr = yapic.sBrackets )
+      cmp                     al,                           '<'
+      je                      jump
+      cmp                     al,                           '{'
+      je                      jump
+      cmp                     al,                           '['
+      je                      jump
+      cmp                     al,                           '('
+      je                      jump
+      cmp                     al,                           ')'
+      je                      jump
+      cmp                     al,                           ']'
+      je                      jump
+      cmp                     al,                           '}'
+      je                      jump
+      cmp                     al,                           '>'
+      je                      jump
+    else if ( chr = yapic.sAny )
+      jmp                     jump
+    else if ((( chr and yapic.fCharMask ) >= yapic.fNoCaseA ) & (( chr and yapic.fCharMask ) <= yapic.fNoCaseZ ))
+      or                      al,                           maschine_fCaseMask
+      cmp                     al,                           ( chr and yapic.fCharMask )
+      je                      jump
+    else
+      err "Error: Unknown special char!"
+    end if
+  else
+    cmp                       al,                           ( chr )
+    je                        jump
+  end if
+  final                       =                             $
+}
+macro yapic_orFail          chr,                          jump
+{
+  ;if chr not in class
+  ;  jmp jump
+  ;end if
+  ;usefull as string
+  local final
+  if  ( chr and yapic.fSpecial )
+    if      ( chr = yapic.sUpper )
+      cmp                     al,                           'A'
+      jb                      jump
+      cmp                     al,                           'Z'
+      ja                      jump
+    else if ( chr = yapic.sLower )
+      cmp                     al,                           'a'
+      jb                      jump
+      cmp                     al,                           'z'
+      ja                      jump
+    else if ( chr = yapic.sAlpha )
+      or                      al,                           yapic.fCaseMask
+      cmp                     al,                           'a'
+      jb                      jump
+      cmp                     al,                           'z'
+      ja                      jump
+    else if ( chr = yapic.sAlphaNumeric )
+      cmp                     al,                           '0'
+      jb                      jump
+      cmp                     al,                           '9'
+      jbe                     final
+      or                      al,                           yapic.fCaseMask
+      cmp                     al,                           'a'
+      jb                      jump
+      cmp                     al,                           'z'
+      ja                      jump
+    else if ( chr = yapic.sOctal )
+      cmp                     al,                           '0'
+      jb                      jump
+      cmp                     al,                           '7'
+      ja                      jump
+    else if ( chr = yapic.sDecimal )
+      cmp                     al,                           '0'
+      jb                      jump
+      cmp                     al,                           '9'
+      ja                      jump
+    else if ( chr = yapic.sNoDecimal )
+      cmp                     al,                           '0'
+      jb                      final
+      cmp                     al,                           '9'
+      jbe                     jump
+    else if ( chr = yapic.sHexadecimal )
+      cmp                     al,                           '0'
+      jb                      jump
+      cmp                     al,                           '9'
+      jbe                     final
+      or                      al,                           yapic.fCaseMask
+      cmp                     al,                           'a'
+      jb                      jump
+      cmp                     al,                           'f'
+      ja                      jump
+    else if ( chr = yapic.sPunctuation )
+      cmp                     al,                           0x21
+      jb                      jump
+      cmp                     al,                           0x2f
+      jbe                     final
+      cmp                     al,                           0x3a
+      jb                      jump
+      cmp                     al,                           0x40
+      jbe                     final
+      cmp                     al,                           0x5b
+      jb                      jump
+      cmp                     al,                           0x60
+      jbe                     final
+      cmp                     al,                           0x7b
+      jb                      jump
+      cmp                     al,                           0x7e
+      ja                      jump
+    else if ( chr = yapic.sBlank )
+      cmp                     al,                           yapic.sWhitespace
+      je                      final
+      cmp                     al,                           yapic.sTabulator
+      jne                     jump
+    else if ( chr = yapic.sSpace )
+      cmp                     al,                           0x09
+      jb                      jump
+      cmp                     al,                           0x0d
+      jbe                     final
+      cmp                     al,                           yapic.sWhitespace
+      jne                     jump
+    else if ( chr = yapic.sNoSpace )
+      cmp                     al,                           0x09
+      jb                      final
+      cmp                     al,                           0x0d
+      jbe                     jump
+      cmp                     al,                           yapic.sWhitespace
+      je                      jump
+    else if ( chr = yapic.sControl )
+      cmp                     al,                           0x1f
+      jbe                     final
+      cmp                     al,                           0x7f
+      jne                     jump
+    else if ( chr = yapic.sGraphical )
+      cmp                     al,                           0x21
+      jb                      jump
+      cmp                     al,                           0x7e
+      ja                      jump
+    else if ( chr = yapic.sPrintable )
+      cmp                     al,                           0x09
+      jb                      jump
+      cmp                     al,                           0x0d
+      jbe                     final
+      cmp                     al,                           0x20
+      jb                      jump
+      cmp                     al,                           0x7e
+      ja                      jump
+    else if ( chr = yapic.sWord )
+      cmp                     al,                           '0'
+      jb                      jump
+      cmp                     al,                           '9'
+      jbe                     final
+      cmp                     al,                           '_'
+      je                      final
+      or                      al,                           yapic.fCaseMask
+      cmp                     al,                           'a'
+      jb                      jump
+      cmp                     al,                           'z'
+      ja                      jump
+    else if ( chr = yapic.sNoWord )
+      cmp                     al,                           '0'
+      jb                      jump
+      cmp                     al,                           '9'
+      jbe                     final
+      cmp                     al,                           '_'
+      je                      final
+      or                      al,                           yapic.fCaseMask
+      cmp                     al,                           'a'
+      jb                      jump
+      cmp                     al,                           'z'
+      ja                      jump
+    else if ( chr = yapic.sString )
+      cmp                     al,                           0x22
+      je                      final
+      cmp                     al,                           0x27
+      jne                     jump
+    else if ( chr = yapic.sMathematical )
+      cmp                     al,                           '!'
+      je                      final
+      cmp                     al,                           '%'
+      je                      final
+      cmp                     al,                           'and'
+      je                      final
+      cmp                     al,                           '*'
+      je                      final
+      cmp                     al,                           '+'
+      je                      final
+      cmp                     al,                           '-'
+      je                      final
+      cmp                     al,                           '/'
+      je                      final
+      cmp                     al,                           '<'
+      je                      final
+      cmp                     al,                           '='
+      je                      final
+      cmp                     al,                           '>'
+      je                      final
+      cmp                     al,                           '^'
+      je                      final
+      cmp                     al,                           '|'
+      je                      final
+      cmp                     al,                           '~'
+      jne                     jump
+    else if ( chr = yapic.sBrackets )
+      cmp                     al,                           '<'
+      je                      final
+      cmp                     al,                           '{'
+      je                      final
+      cmp                     al,                           '['
+      je                      final
+      cmp                     al,                           '('
+      je                      final
+      cmp                     al,                           ')'
+      je                      final
+      cmp                     al,                           ']'
+      je                      final
+      cmp                     al,                           '}'
+      je                      final
+      cmp                     al,                           '>'
+      jne                     jump
+    else if ( chr = yapic.sAny )
+    else if ((( chr and yapic.fCharMask ) >= yapic.fNoCaseA ) & (( chr and yapic.fCharMask ) <= yapic.fNoCaseZ ))
+      or                      al,                           maschine_fCaseMask
+      cmp                     al,                           ( chr and yapic.fCharMask )
+      jne                     jump
+    else
+      err "Error: Unknown special char!"
+    end if
+  else
+    mov ah, chr
+    cmp                       al,                           ( chr )
+    jne                       jump
+  end if
+  final                       =                             $
+}
+macro yapic_isTest            aaa,      ooo,                true,               false
+{
+  call                        yapic.getChar
+  yapic_inTest                aaa,      ooo,                true,               false
+}
+macro yapic_isCase            aaa,      ooo,                jump
+{
+  call                        yapic.getChar
+  yapic_isCase                aaa,      ooo,                jump
+}
+macro yapic_isFail            aaa,      ooo,                jump
+{
+  call                        yapic.getChar
+  yapic_isFail                aaa,      ooo,                jump
+}
+macro yapic_inTest            aaa,      ooo,                true,               false
+{
+  if ( aaa < ooo )
+    cmp                       al,       aaa
+    jb                        false
+    cmp                       al,       ooo
+    jbe                       true
+    jmp                       false
+  else if ( aaa = ooo )
+    cmp                       al,       aaa
+    je                        true
+    jmp                       false
+  else
+    cmp                       al,       ooo
+    jb                        false
+    cmp                       al,       aaa
+    jbe                       true
+    jmp                       false
+  end if
+}
+macro yapic_inCase            aaa,      ooo,                jump
+{
+  local final
+  if ( aaa < ooo )
+    cmp                       al,       aaa
+    jb                        final
+    cmp                       al,       ooo
+    jbe                       jump
+  else if ( aaa = ooo )
+    cmp                       al,       aaa
+    je                        jump
+  else
+    cmp                       al,       ooo
+    jb                        final
+    cmp                       al,       aaa
+    jbe                       jump
+  end if
+  final                       =                             $
+}
+macro yapic_inFail            aaa,      ooo,                jump
+{
+  local final
+  if ( aaa < ooo )
+    cmp                       al,       aaa
+    jb                        jump
+    cmp                       al,       ooo
+    ja                        jump
+  else if ( aaa = ooo )
+    cmp                       al,       aaa
+    jne                       jump
+  else
+    cmp                       al,       ooo
+    jb                        jump
+    cmp                       al,       aaa
+    ja                        jump
+  end if
+}

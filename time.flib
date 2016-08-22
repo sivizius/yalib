@@ -1,0 +1,20 @@
+;( constants )
+  time_seconds                          =                                       ( 1000 * 1000 * 1000 )
+  time_milliseconds                     =                                       ( 1000 * 1000 )
+  time_microseconds                     =                                       ( 1000 )
+;( macros )
+  macro time_nanosleep                  nsec
+  {
+    local                               done
+    done                                equ                                     false
+    match =[addr=],nsec
+    \{
+      mov                               rax,                                    qword [ addr ]
+      done                              equ                                     true
+    \}
+    match =false,done
+    \{
+      mov                               rax,                                    nsec
+    \}
+    call                                qword [ time.nanosleep ]
+  }

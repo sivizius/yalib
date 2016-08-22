@@ -1,0 +1,38 @@
+;( macros )
+  macro elder_init                      size
+  {
+    if ( size eq )
+      null                              lib0arg
+    else
+      mov                               lib0arg,                                size
+    end if
+    call                                qword [ elder.init ]
+  }
+  macro elder_debugRelative
+  {
+    call                                qword [ elder.debugRelative ]
+  }
+  macro elder_goDown
+  {
+    call                                qword [ elder.goDown ]
+  }
+  macro elder_goEast
+  {
+    call                                qword [ elder.goEast ]
+  }
+  macro elder_goWest
+  {
+    call                                qword [ elder.goWest ]
+  }
+  macro elder_sproutDown
+  {
+    call                                qword [ elder.sproutDown ]
+  }
+  macro elder_sproutEast
+  {
+    call                                qword [ elder.sproutEast ]
+  }
+  macro elder_sproutWest
+  {
+    call                                qword [ elder.sproutWest ]
+  }

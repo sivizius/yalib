@@ -1,0 +1,89 @@
+;( macros )
+  macro echo_state
+  {
+    call                                qword [ echo.state ]
+  }
+  macro echo_msgLoad                    string,                                 size
+  {
+    local done
+    done                                equ                                     false
+    match =[addr=],string
+    \{
+      done                              equ                                     true
+      mov                               sys1arg,                                qword [ addr ]
+      movzx                             sys2arg,                                word  [ sys1arg - 2 ]
+    \}
+    match =false,done
+    \{
+      lea                               sys1arg,                                [ string ]
+      if ( size eq )
+        mov                             sys2arg,                                string#.size
+      else
+        done                            equ                                     false
+        match =word [addr],size
+        \\{
+          done                          equ                                     true
+          movzx                         sys2arg,                                word [ addr - 2 ]
+        \\}
+        match =false,done
+        \\{
+          mov                           sys2arg,                                size
+        \\}
+      end if
+    \}
+  }
+  macro echo_msgSet                     string,                                 size
+  {
+    mov                                 sys2arg,                                size
+    match =word [addr],string
+    \{
+      done                              equ                                     ok
+      lea                               sys1arg,                                [ addr ]
+    \}
+    match =not,done
+    \{
+      mov                               sys1arg,                                string
+    \}
+  }
+  macro echo_put                        string,                                 size
+  {
+    match any, string
+    \{
+      echo_msgLoad                      string,                                 size
+    \}
+    call                                qword [ echo.print ]
+  }
+  macro echo_putError
+  {
+    call                                qword [ echo.error ]
+  }
+  macro echo_hexBuffer                  buffer,                                 size
+  {
+    lea                                 lib1arg,                                [ buffer ]
+    mov                                 lib0arg,                                size
+    call                                qword [ echo.hexBuffer ]
+  }
+  macro echo_hexValue                   buffer,                                 size
+  {
+    lea                                 lib1arg,                                [ buffer ]
+    mov                                 lib0arg,                                size
+    call                                qword [ echo.hexValue ]
+  }
+  macro echo_hexRegister                register,                               size
+  {
+    if ( register eq )
+      mov                               qword [ echo.hexRegister ],             rax
+    else
+      mov                               qword [ echo.hexRegister ],             register
+    end if
+    lea                                 lib1arg,                                [ echo.hexRegister ]
+    if ( size eq )
+      mov                               lib0arg,                                8
+    else
+      mov                               lib0arg,                                ( size )
+    end if
+    call                                qword [ echo.hexValue ]
+  }
+  echo_hexReg                           fix                                     echo_hexRegister
+  echo_hexVal                           fix                                     echo_hexValue
+  echo_hexBuf                           fix                                     echo_hexBuffer
