@@ -1,0 +1,7 @@
+*~
+*.save
+*.bin
+*.elf
+*misc/*
+*.sym
+sba.sh
