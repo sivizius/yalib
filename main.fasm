@@ -56,3 +56,66 @@ xtext                                   fix                                     
 xresv                                   fix                                     useXResv
 xstat                                   fix                                     useXStat
 yalib                                   fix                                     useYalib
+macro onError_fail                      jump
+{
+  flags                                 rax
+  js                                    jump
+}
+macro onError_put
+{
+  call                                  echo.error
+}
+macro onError do, [ arg ]
+{
+  local _content_, _do_, _next_
+  match a, do
+  \{
+    or                                  rax,                                    rax
+    js                                  _do_
+      jmp                               _next_
+    _do_:
+      do                                arg
+    _next_:
+  \}
+  match , do
+  \{
+    or                                  rax,                                    rax
+    js                                  _do_
+      jmp                               _next_
+    _do_:
+      _content_
+    _next_:
+    macro _content_
+  \}
+}
+
+macro onDebug do, [ arg ]
+{
+  match a, do
+  \{
+    match =true, __debug__
+    \\{
+      do                                arg
+    \\}
+  \}
+  match , do
+  \{
+    match =true, __debug__
+  \}
+}
+
+macro onAlone do, [ arg ]
+{
+  match a, do
+  \{
+    match =false, __debug__
+    \\{
+      do                                arg
+    \\}
+  \}
+  match , do
+  \{
+    match =false, __debug__
+  \}
+}
+
