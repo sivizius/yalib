@@ -1,0 +1,12 @@
+macro sasha0_init                       sbox,                                   seed
+{
+  if ( sbox eq )
+  else
+    mov                                 lib1arg,                                sbox
+  end if
+  if ( seed eq )
+  else
+    mov                                 lib0arg,                                seed
+  end if
+  call                                  qword [ sasha.init0 ]
+}

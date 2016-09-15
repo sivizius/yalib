@@ -1,3 +1,3 @@
 #!/bin/bash
 
-../build/bin/fasm "yalib.fasm" "../build/lib/yalib" 2>&1 | tee "../build/out/yalib.log"
+echo "this library is supposed to be included as source."

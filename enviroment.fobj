@@ -1,0 +1,2 @@
+symbol  enviroment.get                  ->                                      'get'
+symbol  enviroment.init                 ->                                      'init'

@@ -1,0 +1,261 @@
+;( constants )
+  buffers.ctrPage                       =                                       8                                       ;in [1,8]
+  buffers.lenBigFoo                     =                                       18
+  buffers.lenMeta                       =                                       40
+  buffers.lenFree                       =                                       ( buffers.lenFull - buffers.lenMeta )
+  buffers.lenFull                       =                                       ( 4096 * buffers.ctrPage )
+  buffers.start                         =                                       0x0000
+  buffers.startPositiv                  =                                       0x0001
+  buffers.startInvalid                  =                                       (( buffers.lenFree - 2 ) + 1 )
+  buffers.startNegativ                  =                                       ( 0x10000 - ( buffers.lenFree - 2 ))
+  buffers.offNext                       =                                       0x00
+  buffers.offStop                       =                                       0x08
+  buffers.offHere                       =                                       0x10
+  buffers.offLast                       =                                       0x18
+  buffers.offFull                       =                                       0x20
+  buffers.offFree                       =                                       0x22
+  buffers.offUsed                       =                                       0x24
+  buffers.offSpam                       =                                       0x26
+  buffers.offContent                    =                                       0x28
+  buffers.offSize                       =                                       0x00
+  buffers.offNormal                     =                                       0x02
+  buffers.offBigFoo                     =                                       0x02
+  buffers.offBigUsed                    =                                       0x0a
+  buffers.offBigPage                    =                                       0x0e
+  buffers.magicBigFoo                   =                                       0x8000
+  buffers.magicBigFooRemoved            =                                       0x8001
+;( macros )
+  address@__buffers__                    fix                                     rax
+;  address_d@__buffers__                  fix                                     eax
+;  address_w@__buffers__                  fix                                     ax
+;  address_b@__buffers__                  fix                                     al
+  char@__buffers__                       fix                                     rax
+  char_d@__buffers__                     fix                                     eax
+  char_w@__buffers__                     fix                                     ax
+  char_b@__buffers__                     fix                                     al
+  length@__buffers__                     fix                                     rax
+  length_d@__buffers__                   fix                                     eax
+  length_w@__buffers__                   fix                                     ax
+;  length_b@__buffers__                   fix                                     al
+  offset@__buffers__                     fix                                     rsi
+;  offset_d@__buffers__                   fix                                     esi
+;  offset_w@__buffers__                   fix                                     si
+;  offset_b@__buffers__                   fix                                     sil
+  value@__buffers__                      fix                                     rax
+  value_d@__buffers__                    fix                                     eax
+  value_w@__buffers__                    fix                                     ax
+  value_b@__buffers__                    fix                                     al
+  content@__buffers__                    fix                                     rbx
+;  content_d@__buffers__                  fix                                     ebx
+;  content_w@__buffers__                  fix                                     bx
+;  content_b@__buffers__                  fix                                     bl
+  contentSize@__buffers__                fix                                     rcx
+  contentSize_d@__buffers__              fix                                     ecx
+  contentSize_w@__buffers__              fix                                     cx
+;  contentSize_b@__buffers__              fix                                     cl
+  inputSize@__buffers__                  fix                                     rdx
+  inputSize_d@__buffers__                fix                                     edx
+  inputSize_w@__buffers__                fix                                     dx
+  input@__buffers__                      fix                                     rsi
+;  input_d@__buffers__                    fix                                     esi
+;  input_w@__buffers__                    fix                                     si
+;  input_b@__buffers__                    fix                                     sil
+  buffer@__buffers__                     fix                                     rdi
+;  buffer_d@__buffers__                   fix                                     edi
+;  buffer_w@__buffers__                   fix                                     di
+;  buffer_b@__buffers__                   fix                                     dil
+  macro buffers_clone                   buffer,                                 start,                                  length
+  {
+    if ( start eq )
+      null                              rsi
+      null                              rdx
+    else
+      if ( start eq 0 )
+        null                            rsi
+      else
+        mov                             rsi,                                    start
+      end if
+      if ( length eq )
+        null                            rdx
+      else
+        if ( length eq 0 )
+          null                          rdx
+        else
+          mov                           rdx,                                    length
+        end if
+      end if
+    end if
+    mov                                 rdi,                                    buffer
+    call                                qword [ buffers.clone ]
+  }
+  macro buffers_create                  size,                                   input,                                  input_size
+  {
+    buffers_new                         size,                                   input,                                  input_size
+  }
+  macro buffers_debug
+  {
+    call                                qword [ buffers.debug ]
+  }
+  macro buffers_del                     buffer
+  {
+    if ( buffer eq )
+    else
+      mov                               rdi,                                    buffer
+    end if
+    call                                qword [ buffers.delete ]
+  }
+  macro buffers_delete                  buffer
+  {
+    if ( buffer eq )
+      buffers_del
+    else
+      buffers_del                       buffer
+    end if
+  }
+  macro buffers_echo                    buffer
+  {
+    if ( buffer eq )
+    else
+      mov                               rdi,                                    buffer
+    end if
+    call                                qword [ buffers.echo ]
+  }
+  macro buffers_extend                  buffer,                                 length,                                 input,                                  input_size
+  {
+    if ( buffer eq )
+    else
+      mov                               rdi,                                    buffer
+      if ( length eq )
+      else
+        mov                             rax,                                    length
+        if ( input eq )
+          null                          rsi
+          null                          rdx
+        else
+          if ( input eq 0 )
+            null                        rsi
+          else
+            mov                         rsi,                                    input
+          end if
+          if ( input_size eq )
+            null                        rdx
+          else
+            if ( input_size eq 0 )
+              null                      rdx
+            else
+              mov                       rdx,                                    input_size
+            end if
+          end if
+        end if
+      end if
+    end if
+    call                                qword [ buffers.extend ]
+  }
+  macro buffers_get                     buffer,                                 jump
+  {
+    if ( buffer eq )
+    else
+      mov                               rdi,                                    buffer
+    end if
+    call                                qword [ buffers.get ]
+    if ( jump eq )
+    else
+      jc                                jump
+    end if
+  }
+  macro buffers_new                     size,                                   input,                                  input_size
+  {
+    match any, size
+    \{
+      mov                               rcx,                                    size
+      match , input
+      \\{
+        null                            rdx
+      \\}
+      match any, input
+      \\{
+        lea                             rsi,                                    [ input ]
+        mov                             rdx,                                    input_size
+      \\}
+    \}
+    call                                qword [ buffers.new ]
+  }
+  macro buffers_putB                    buffer,                                 char
+  {
+    if ( buffer eq )
+    else
+      mov                               rdi,                                    buffer
+      if ( char eq )
+      else
+        mov                             al,                                     char
+      end if
+    end if
+    call                                qword [ buffers.putByte ]
+  }
+  macro buffers_putW                    buffer,                                 char
+  {
+    if ( buffer eq )
+    else
+      mov                               rdi,                                    buffer
+      if ( char eq )
+      else
+        mov                             ax,                                     char
+      end if
+    end if
+    call                                qword [ buffers.putWord ]
+  }
+  macro buffers_putD                    buffer,                                 char
+  {
+    if ( buffer eq )
+    else
+      mov                               rdi,                                    buffer
+      if ( char eq )
+      else
+        mov                             eax,                                    char
+      end if
+    end if
+    call                                qword [ buffers.putDWord ]
+  }
+  macro buffers_putQ                    buffer,                                 char
+  {
+    if ( buffer eq )
+    else
+      mov                               rdi,                                    buffer
+      if ( char eq )
+      else
+        mov                             rax,                                    char
+      end if
+    end if
+    call                                qword [ buffers.putQWord ]
+  }
+  macro buffers_revive
+  {
+    if ( buffer eq )
+    else
+      mov                               rdi,                                    buffer
+    end if
+    call                                qword [ buffers.revive ]
+  }
+  macro buffers_savePage                memory
+  {
+    mov                                 qword [ memory ],                       r15
+  }
+  macro buffers_saveBuffer              memory
+  {
+    lea                                 rax,                                    [ memory ]
+    call                                qword [ buffers.store ]
+  }
+  macro buffers_saveContent             memory
+  {
+    mov                                 qword [ memory ],                       rbx
+  }
+  macro buffers_utf8                    string
+  {
+    if      ( string eq )
+      null                              rsi
+    else if ( string eq rsi )
+    else
+      mov                               rsi,                                    string
+    end if
+    call                                qword [ buffers.utf8 ]
+  }

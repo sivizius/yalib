@@ -1,4 +1,4 @@
-yalib. version 0.9.1.0-»Amanita muscaria«.
+yalib - yet another libraries, includes, blueprints. version 0.9.1.0-»Amanita muscaria«.
 
 Copyright (c) 2016, Sebastian Walz.
 

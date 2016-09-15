@@ -1,0 +1,55 @@
+;( macros )
+  macro env_init
+  {
+    call                                qword [ enviroment.init ]
+  }
+  macro env_echo                        jump,                                   message
+  {
+    local                               next
+    ;( if enviroment.get() failed -> jump )
+      call                              qword [ enviroment.get ]
+      if ( jump eq )
+        jz                              next
+      else
+        jz                              jump
+      end if
+    ;( else )
+    ;{
+      if ( message eq )
+      else
+        push                            rcx
+          echo_put                      message
+        pop                             rcx
+      end if
+      echo_set                          r15,                                    rcx
+      echo_put
+      next                              =                                       $
+    ;}
+  }
+  macro env_save                        jump,                                   addr
+  {
+    local                               next
+    ;( if enviroment.get() failed -> jump )
+      call                              qword [ enviroment.get ]
+      if ( jump eq )
+        jz                              next
+      else
+        jz                              jump
+      end if
+    ;( else )
+    ;{
+      mov                               rsi,                                    r15
+      mov                               rdx,                                    rcx
+      call                              qword [ buffers.new ]
+      lea                               rax,                                    [ addr ]
+      call                              qword [ buffers.store ]
+      next                              =                                       $
+    ;}
+  }
+  macro env_void                        jump
+  {
+    pop                                 r15
+    ;( if *argument = NULL -> jump )
+      or                                r15,                                    r15
+      jz                                jump
+  }
